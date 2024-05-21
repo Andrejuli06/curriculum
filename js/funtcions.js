@@ -2,7 +2,7 @@
 // alert("HOLA SOY UN ALERT DESDE EL ARCUVO EXTERNO DE JS");
 // console.log("hola soy un mensaje de consola");
 // document.write("hola soy la interfas principal");
-// Swal.fire("Soy una alerta de una libreria");
+Swal.fire("Soy una alerta de una libreria");
 
 //variables y tipos de datos
 
@@ -40,7 +40,14 @@ function load_page(){
         imageUrl: "https://ufpso.edu.co/administradoru15/ventana/banner%20Admitidos_Mesa%20de%20trabajo%201%20(3)%20(1).jpg",
         imageAlt: "A tall image"
       });
-      
+      document.getElementById("fecha").value = new Date();
+      let fecha= new Date();
+      document.getElementById("dia").innerText = fecha.getDay();
+      document.getElementById("año").innerText = fecha.getFullYear();
+      document.getElementById("mes").innerText = fecha.getMonth();
+      document.getElementById("dia_mes").innerText = fecha.getDate();
+      document.getElementById("hora").innerText = fecha.getHours()
+      document.getElementById("minute").innerText = fecha.getMinutes()
 }
 function send_info(){
     let name= document.getElementById("name").value;
@@ -160,4 +167,44 @@ function agregarp(){
 function eliminarp(){
   let val_new2= array_num2.shift();
   document.getElementById("valores").value="";
+}
+// funcion para enviar el nombre concatenado
+function send_name(){
+  let name_one = document.getElementById("name_one").value;
+  let name_two = document.getElementById("name_two").value;
+  let search_var = document.getElementById("search_var").value;
+  let name_com=name_one.toUpperCase()+" "+ name_two.toUpperCase();
+  // let variable= name_com.indexOf("I");
+  // let variable = name_com.charAt(3);
+  let variable = name_com.charAt(search_var);
+  if(search_var<=name_com.length && search_var == 0){
+    // console.log(variable); // el swal.fire no esta diseñado paraa mostrar numero entreros 
+    // swal.fire( variable+" ");
+    document.getElementById("print_name").innerText ="la letra correspondiente es numero al #"+ search_var+" es:"+variable;
+  }
+  else if(isNaN(search_var != false)){
+      Swal.fire({
+        title: "error",
+        text: "el numero no concuerda con la cantidad del nombre ",
+        icon: "error"
+      });
+  }
+  // else if(search_var == 0){
+  //   Swal.fire({
+  //     title: "error",
+  //     text: "el campo esta vacio",
+  //     icon: "error"
+  //   });
+  // }
+  else{
+    Swal.fire({
+      title: "error",
+      text: "el numero no tiene valor o no concuerda con la cantidad del nombre ",
+      icon: "error"
+    });
+    document.getElementById("print_name").innerText ="";
+  }
+
+  
+
 }
